@@ -1,16 +1,22 @@
-import kinderData from '../data/kindergartners_in_full_day_program.js';
-
 
 export default class DistrictRepository {
   constructor(kinderData) {
-    this.data = kinderData.reduce((acc, item) => {
-      if (!acc[item.Location]) {
-        acc[item.Location] = Object.keys(item).reduce((acc, node) => {
-          if (!acc[node.TimeFrame]) {
-            acc[node.TimeFrame] = item.TimeFrame
-          }
-          return acc;
-        },{})
+    this.normalizedData = kinderData.map(item => {
+      let itemKeys = Object.keys(item)
+      let lowerItemKeys = itemKeys.reduce((accu, element) => {
+        let elementArray = element.split('');
+        elementArray[0] = elementArray[0].toLowerCase()
+        accu[elementArray.join('')] = item[element]
+        return accu
+      }, {})
+      return lowerItemKeys
+    })
+
+    this.data = this.normalizedData.reduce((acc, item) => {
+      if (!acc[item.location]) {
+        acc[item.location] = [item]
+      } else {
+        acc[item.location] = [...acc[item.location], item]
       }
       return acc
     },{})
