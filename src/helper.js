@@ -13,24 +13,24 @@ export default class DistrictRepository {
     })
 
     this.data = this.normalizedData.reduce((acc, item) => {
-      // console.log(item);
+      const roundedData = () => {
+        if (typeof item.data === 'number') {
+        return Math.round(item.data*1000)/1000
+      } else {
+        return 0
+      }
+    }
       if (!acc[item.location]) {
-        acc[item.location] = Object.keys(item).reduce((acc, item2) => {
-          acc.location = item.location
-          acc.data = {
-            [item.timeFrame]: item.data
-          }
+        acc[item.location] = {location: item.location, data: {[item.timeFrame]: roundedData()}}
 
           return acc
-        },{})
       } else {
         acc[item.location].data = Object.assign(acc[item.location].data, {
-          [item.timeFrame]: item.data
+          [item.timeFrame]: roundedData()
         })
       }
       return acc
     },{})
-    console.log(this.data);
   }
 
 
@@ -38,14 +38,11 @@ export default class DistrictRepository {
     if (arguments.length === 0) return undefined
 
     let searchTermLower = searchTerm.toLowerCase()
-    let location = Object.keys(this.data).find(el => {
-      return el.toLowerCase() === searchTermLower
+    let location = Object.keys(this.data).find(element => {
+      return element.toLowerCase() === searchTermLower
     })
 
-    // if (!keys.includes(searchTermLower)) return undefined
-
     return this.data[location]
-
   }
 
 }
