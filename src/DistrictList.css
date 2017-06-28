@@ -6,39 +6,5 @@ body {
 .district-list {
   display: flex;
   flex-wrap: wrap;
-}
-
-.district-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 2px solid black;
-  border-radius: 8px;
-  margin: 10px;
-  padding: 10px;
-  background-color: #fff;
-}
-
-.district-card h1 {
-  font-size: 20px;
-  text-align: center;
-  width: 180px;
-  height: 50px;
-  padding-bottom: 5px;
-  border-bottom: 3px solid #bbb;
-  display: flex;
   justify-content: center;
-  align-items: center;
-}
-
-.district-card .year {
-  font-weight: bold;
-}
-
-.high {
-  color: green;
-}
-
-.low {
-  color: red;
 }
