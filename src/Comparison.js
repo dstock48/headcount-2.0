@@ -1,15 +1,31 @@
 import React, { Component } from 'react';
 import DistrictCard from './DistrictCard'
 import PropTypes, {array, shape, arrayOf} from 'prop-types'
+import ComparisonCard from './ComparisonCard'
 require('./Comparison.css');
 
-const Comparison = ( { comparisonDistricts } ) => {
+const Comparison = ( { comparisonDistricts, comparisonData } ) => {
   const districtsArray = comparisonDistricts.map((district, i) => <DistrictCard key={district.location + i} distData={district}/>);
-  return (
-    <div className="comparison">
-      {districtsArray}
-    </div>
-  )
+  if (comparisonDistricts.length < 2) {
+    return (
+      <div className="comparison">
+        {districtsArray}
+      </div>
+    )
+  }
+
+
+  else {
+    return (
+      <div className="comparison">
+        {districtsArray[0]}
+        <ComparisonCard comparisonData={comparisonData}/>
+        {districtsArray[1]}
+      </div>
+    )}
+
+
+
 };
 
 

@@ -12,41 +12,60 @@ class App extends Component {
     super()
     this.state = {
       districts: [],
-      comparisonDistricts: []
+      comparisonDistricts: [],
+      compareDistrictAverages: {}
     }
+    this.district = new DistrictRepository(kinderData)
   }
 
   componentWillMount() {
-    const district = new DistrictRepository(kinderData)
-    const newState = {districts: district.findAllMatches()}
+    const newState = {districts: this.district.findAllMatches()}
     this.setState(newState)
   }
 
+  compareDistricts(dist1, dist2) {
+    return this.district.compareDistrictAverages(dist1, dist2)
+  }
+
   handleSearch(e) {
-    const district = new DistrictRepository(kinderData)
 
     if (e.target.value === '') {
-      const newState = {districts: district.findAllMatches()}
+      const newState = {districts: this.district.findAllMatches()}
       this.setState(newState)
       return
     }
 
-    const newState = {districts: district.findAllMatches(e.target.value)}
+    const newState = {districts: this.district.findAllMatches(e.target.value)}
     this.setState(newState)
   }
 
   handleSelectCard(location) {
-    const district = new DistrictRepository(kinderData)
-    const comparisonArr = [...this.state.comparisonDistricts, district.findByName(location)]
-    const newState = {comparisonDistricts: comparisonArr.splice(comparisonArr.length - 2)}
-    this.setState(newState)
+    for (let i = 0; i < this.state.comparisonDistricts.length; i++) {
+      if (this.state.comparisonDistricts[i].location === location) {
+        const newState = {comparisonDistricts: this.state.comparisonDistricts.filter(item => item.location !== location)}
+        this.setState(newState)
+        return
+      }
+
+    }
+    const comparisonArr = [...this.state.comparisonDistricts, this.district.findByName(location)]
+    const usableComparisonArr = Array.from(comparisonArr)
+    console.log(location)
+    if (comparisonArr.length > 1) {
+      const newState = {comparisonDistricts: comparisonArr.splice(comparisonArr.length - 2), compareDistrictAverages: this.compareDistricts(usableComparisonArr[usableComparisonArr.length-1], usableComparisonArr[usableComparisonArr.length-2]) }
+      this.setState(newState)
+    }
+    else {
+      const newState = {comparisonDistricts: comparisonArr.splice(comparisonArr.length - 2)}
+      this.setState(newState)
+    }
   }
 
 
   render() {
     return (
       <div>
-        <Comparison comparisonDistricts={this.state.comparisonDistricts} />
+        <Comparison comparisonDistricts={this.state.comparisonDistricts} compareDistrictAverages={(dist1, dist2) => this.compareDistrictAverages(dist1, dist2)}/>
         <Controls handleSearch={(searchInput) => this.handleSearch(searchInput)} />
         <DistrictList districts={this.state.districts} handleSelectCard={(location) => this.handleSelectCard(location)}/>
       </div>

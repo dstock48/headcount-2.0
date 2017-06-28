@@ -22,6 +22,7 @@ export default class DistrictRepository {
     }
       if (!acc[item.location]) {
         acc[item.location] = {
+          selected: false,
           location: item.location,
           data: {[item.timeFrame]: roundedData()}
         }
@@ -77,7 +78,6 @@ export default class DistrictRepository {
     const location1 = this.findByName(selection1).location
     const location2 = this.findByName(selection2).location
     const obj = {}
-console.log(location1, location2)
     const compare = Math.round((average1 / average2) * 1000)/1000
 
     obj[location1] = average1;
