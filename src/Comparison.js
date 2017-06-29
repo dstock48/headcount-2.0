@@ -4,8 +4,8 @@ import ComparisonCard from './ComparisonCard'
 import {object, arrayOf} from 'prop-types'
 require('./Comparison.css');
 
-const Comparison = ( { comparisonDistricts, comparisonData } ) => {
-  const districtsArray = comparisonDistricts.map((district, i) => <DistrictCard key={district.location + i} distData={district}/>);
+const Comparison = ( { comparisonDistricts, comparisonData, handleSelectCard } ) => {
+  const districtsArray = comparisonDistricts.map((district, i) => <DistrictCard key={district.location + i} activeClass="district-card active" distData={district} handleSelectCard={handleSelectCard}/>);
   if (comparisonDistricts.length < 2) {
     return (
       <div className="comparison">
@@ -19,7 +19,7 @@ const Comparison = ( { comparisonDistricts, comparisonData } ) => {
     return (
       <div className="comparison">
         {districtsArray[0]}
-        <ComparisonCard comparisonData={comparisonData}/>
+        <ComparisonCard comparisonData={comparisonData} />
         {districtsArray[1]}
       </div>
     )}

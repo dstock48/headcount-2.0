@@ -40,30 +40,23 @@ class App extends Component {
 
   handleSelectCard(location) {
     let comparisonArr;
-
     const comparisonDistrictNames = this.state.comparisonDistricts.map(dist => dist.location)
-
     if (comparisonDistrictNames.includes(location)) {
       const comparisonArr = this.state.comparisonDistricts.filter(item => item.location !== location)
       this.setState({comparisonDistricts: comparisonArr})
       return
     }
-
-    if (this.state.comparisonDistricts.length > 1) {
+    if (this.state.comparisonDistricts.length >= 1) {
       comparisonArr = [this.state.comparisonDistricts[this.state.comparisonDistricts.length-1], this.district.findByName(location)]
-      const newState = {comparisonDistricts: comparisonArr}
-      this.setState(newState)
-    } else if (this.state.comparisonDistricts.length < 2){
-      comparisonArr = [...this.state.comparisonDistricts, this.district.findByName(location)]
-      const newState = {comparisonDistricts: comparisonArr}
-      this.setState(newState)
-    }
-    if (comparisonArr.length === 2) {
       const location1 = comparisonArr[comparisonArr.length-1].location
       const location2 = comparisonArr[comparisonArr.length-2].location
       const comparisonObj = this.district.compareDistrictAverages(location1, location2)
-      const newCompare = {comparisonData: comparisonObj}
-      this.setState(newCompare)
+      const newState = {comparisonDistricts: comparisonArr, comparisonData: comparisonObj}
+      this.setState(newState)
+    } else if (this.state.comparisonDistricts.length < 1){
+      comparisonArr = [...this.state.comparisonDistricts, this.district.findByName(location)]
+      const newState = {comparisonDistricts: comparisonArr}
+      this.setState(newState)
     }
   }
 
@@ -71,9 +64,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Comparison comparisonDistricts={this.state.comparisonDistricts} comparisonData={this.state.comparisonData}/>
+        <Comparison comparisonDistricts={this.state.comparisonDistricts} comparisonData={this.state.comparisonData} handleSelectCard={(location) => this.handleSelectCard(location)}/>
         <Controls handleSearch={(searchInput) => this.handleSearch(searchInput)} />
-        <DistrictList districts={this.state.districts} handleSelectCard={(location) => this.handleSelectCard(location)}/>
+        <DistrictList comparisonDists={this.state.comparisonDistricts} districts={this.state.districts} handleSelectCard={(location) => this.handleSelectCard(location)}/>
       </div>
     );
   }

@@ -22,7 +22,6 @@ export default class DistrictRepository {
     }
       if (!acc[item.location]) {
         acc[item.location] = {
-          selected: false,
           location: item.location,
           data: {[item.timeFrame]: roundedData()}
         }

@@ -1,1 +1,5 @@
 /*APP COMPONENT RELATED CSS GOES HERE*/
+
+.district-card.active {
+  border-color: blue;
+}
