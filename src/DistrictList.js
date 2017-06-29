@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import DistrictCard from './DistrictCard'
-import PropTypes, {array, shape, arrayOf} from 'prop-types'
+// import PropTypes, {array, shape, arrayOf} from 'prop-types'
 require('./DistrictList.css');
 
 const DistrictList = ( { districts, handleSelectCard } ) => {
