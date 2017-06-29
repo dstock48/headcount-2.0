@@ -1,6 +1,6 @@
 import React from 'react';
 import DistrictCard from './DistrictCard'
-// import PropTypes, {array, shape, arrayOf} from 'prop-types'
+import {func, arrayOf, array, shape} from 'prop-types'
 require('./DistrictList.css');
 
 const DistrictList = ( { districts, handleSelectCard } ) => {
@@ -12,12 +12,13 @@ const DistrictList = ( { districts, handleSelectCard } ) => {
   )
 };
 
-// const district = shape({
-//   district: array
-// })
-//
-// DistrictList.propTypes = {
-//   districts: arrayOf(district)
-// }
+const district = shape({
+  district: array
+})
+
+DistrictList.propTypes = {
+  districts: arrayOf(district),
+  handleSearch: func
+}
 
 export default DistrictList

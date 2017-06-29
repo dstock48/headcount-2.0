@@ -1,4 +1,5 @@
 import React from 'react';
+import {object, func} from 'prop-types'
 require('./DistrictCard.css');
 
 const DistrictCard = ({ distData, handleSelectCard }) => {
@@ -20,5 +21,10 @@ const DistrictCard = ({ distData, handleSelectCard }) => {
 
   </div>
 )}
+
+DistrictCard.propTypes = {
+  distData: object,
+  handleSelectCard: func
+}
 
 export default DistrictCard

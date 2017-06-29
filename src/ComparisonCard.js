@@ -1,4 +1,5 @@
 import React from 'react';
+import {object} from 'prop-types'
 
 const ComparisonCard = ({comparisonData}) => {
   const titles = Object.keys(comparisonData)
@@ -9,6 +10,10 @@ const ComparisonCard = ({comparisonData}) => {
 
     </div>
   )
+}
+
+ComparisonCard.propTypes = {
+  comparisonData: object
 }
 
 export default ComparisonCard
