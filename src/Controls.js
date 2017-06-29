@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {func} from 'prop-types'
 require('./Controls.css')
 
 class Controls extends Component {
@@ -21,6 +22,10 @@ class Controls extends Component {
     )
   }
 
+}
+
+Controls.propTypes = {
+  handleSearch: func,
 }
 
 export default Controls

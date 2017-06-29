@@ -1,7 +1,7 @@
 import React from 'react';
 import DistrictCard from './DistrictCard'
-// import PropTypes, {array, shape, arrayOf} from 'prop-types'
 import ComparisonCard from './ComparisonCard'
+import {object, arrayOf} from 'prop-types'
 require('./Comparison.css');
 
 const Comparison = ( { comparisonDistricts, comparisonData } ) => {
@@ -23,10 +23,11 @@ const Comparison = ( { comparisonDistricts, comparisonData } ) => {
         {districtsArray[1]}
       </div>
     )}
-
-
-
 };
 
+Comparison.propTypes = {
+  comparisonData: object,
+  comparisonDistricts: arrayOf(object)
+}
 
 export default Comparison
