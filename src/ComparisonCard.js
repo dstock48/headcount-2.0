@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import DistrictRepository from './helper'
+import React from 'react';
 
 const ComparisonCard = ({comparisonData}) => {
   return (

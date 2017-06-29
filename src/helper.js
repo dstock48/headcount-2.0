@@ -1,7 +1,7 @@
 
 export default class DistrictRepository {
-  constructor(kinderData) {
-    this.normalizedData = kinderData.map(item => {
+  constructor(data) {
+    this.normalizedData = data.map(item => {
       let itemKeys = Object.keys(item)
       let lowerItemKeys = itemKeys.reduce((accu, element) => {
         let elementArray = element.split('');
@@ -38,7 +38,7 @@ export default class DistrictRepository {
   }
 
   findByName(searchTerm) {
-    if (arguments.length === 0) return undefined
+    if (!searchTerm) return undefined
 
     let searchTermLower = searchTerm.toLowerCase()
     let location = Object.keys(this.data).find(element => {
@@ -51,7 +51,7 @@ export default class DistrictRepository {
     let dataKeys = Object.keys(this.data)
     const result = dataKeys.reduce((acc, key) => {
 
-      if (arguments.length === 0) {
+      if (!searchTerm) {
         acc.push(this.data[key])
       } else if (key.toLowerCase().split(' ').includes(searchTerm.toLowerCase())) {
         acc.push(this.data[key])
@@ -63,10 +63,10 @@ export default class DistrictRepository {
   }
 
   findAverage(selection) {
-    selection = this.findByName(selection).location
-    const keys = Object.keys(this.data[selection].data)
+    let selectionString = this.findByName(selection).location
+    const keys = Object.keys(this.data[selectionString].data)
     const sum = keys.reduce((accu, element) => {
-      let yearData = parseFloat(this.data[selection].data[element])
+      let yearData = parseFloat(this.data[selectionString].data[element])
       return accu + yearData
     }, 0)
     return Math.round(sum/keys.length*1000)/1000
@@ -77,12 +77,8 @@ export default class DistrictRepository {
     const average2 = this.findAverage(selection2)
     const location1 = this.findByName(selection1).location
     const location2 = this.findByName(selection2).location
-    const obj = {}
     const compare = Math.round((average1 / average2) * 1000)/1000
-
-    obj[location1] = average1;
-    obj[location2] = average2;
-    obj.compared = compare
+    const obj = Object.assign({}, {[location1]: average1, [location2]: average2, "compared": compare})
 
     return obj;
   }

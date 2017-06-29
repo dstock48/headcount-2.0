@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import PropTypes from 'prop-types'
 import DistrictRepository from './helper'
 import kinderData from '../data/kindergartners_in_full_day_program.js'
 import DistrictList from './DistrictList'
@@ -40,23 +39,23 @@ class App extends Component {
   }
 
   handleSelectCard(location) {
-    for (let i = 0; i < this.state.comparisonDistricts.length; i++) {
-      if (this.state.comparisonDistricts[i].location === location) {
-        const newState = {comparisonDistricts: this.state.comparisonDistricts.filter(item => item.location !== location)}
-        this.setState(newState)
-        return
-      }
+    // console.log(location)
 
+    const comparisonDistrictNames = this.state.comparisonDistricts.map(dist => dist.location)
+
+    if (comparisonDistrictNames.includes(location)) {
+      const comparisonArr = this.state.comparisonDistricts.filter(item => item.location !== location)
+      this.setState({comparisonDistricts: comparisonArr})
+      return
     }
-    const comparisonArr = [...this.state.comparisonDistricts, this.district.findByName(location)]
-    const usableComparisonArr = Array.from(comparisonArr)
-    console.log(location)
-    if (comparisonArr.length > 1) {
-      const newState = {comparisonDistricts: comparisonArr.splice(comparisonArr.length - 2), compareDistrictAverages: this.compareDistricts(usableComparisonArr[usableComparisonArr.length-1], usableComparisonArr[usableComparisonArr.length-2]) }
+
+    if (this.state.comparisonDistricts.length > 1) {
+      const comparisonArr = [this.state.comparisonDistricts[this.state.comparisonDistricts.length-1], this.district.findByName(location)]
+      const newState = {comparisonDistricts: comparisonArr}
       this.setState(newState)
-    }
-    else {
-      const newState = {comparisonDistricts: comparisonArr.splice(comparisonArr.length - 2)}
+    } else {
+      const comparisonArr = [...this.state.comparisonDistricts, this.district.findByName(location)]
+      const newState = {comparisonDistricts: comparisonArr}
       this.setState(newState)
     }
   }
