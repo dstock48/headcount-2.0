@@ -64,8 +64,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Comparison comparisonDistricts={this.state.comparisonDistricts} comparisonData={this.state.comparisonData} handleSelectCard={(location) => this.handleSelectCard(location)}/>
         <Controls handleSearch={(searchInput) => this.handleSearch(searchInput)} />
+        <Comparison comparisonDistricts={this.state.comparisonDistricts} comparisonData={this.state.comparisonData} handleSelectCard={(location) => this.handleSelectCard(location)}/>
         <DistrictList comparisonDists={this.state.comparisonDistricts} districts={this.state.districts} handleSelectCard={(location) => this.handleSelectCard(location)}/>
       </div>
     );
