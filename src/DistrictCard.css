@@ -2,20 +2,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid black;
+  box-shadow: 0px 3px 10px hsla(0,0%,0%,.7);
+  /*border: 2px solid black;*/
   border-radius: 8px;
-  margin: 10px;
-  padding: 10px;
+  margin: 15px;
   background-color: #fff;
+  width: 300px;
+}
+.district-card:hover {
+  cursor: pointer;
+}
+
+.district-card.active {
+  background-color: #FFD166;
 }
 
 .district-card h1 {
+  background-color: #bedeec;
+  border-bottom: 2px solid #a4c2d0;
+  border-radius: 8px 8px 0px 0px;
+  margin: 0;
   font-size: 20px;
   text-align: center;
-  width: 180px;
   height: 50px;
-  padding-bottom: 5px;
-  border-bottom: 3px solid #bbb;
+  width: 280px;
+  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,10 +34,19 @@
 
 .district-card .year {
   font-weight: bold;
+  font-size: 20px;
+}
+
+.yearData {
+  margin: 10px;
+}
+
+.district-data {
+  margin: 8px 0;
 }
 
 .high {
-  background-color: green;
+  background-color: #1F803F;
   padding: 5px 8px;
   border-radius: 5px;
   color: white;

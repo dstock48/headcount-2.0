@@ -2,34 +2,34 @@ import React from 'react';
 import App from '../../src/App';
 import { shallow, mount } from 'enzyme'
 
-// describe('APP COMPONENT TEST - ON LOAD', () => {
-//   const wrapper = mount(<App/>)
-//   it('districts section of state should be populated on page load', () => {
-//     const stateKeys = Object.keys(wrapper.state().districts)
-//     expect(stateKeys.length).toEqual(181)
-//
-//   });
-//
-//   it('Should display the full dataset on load', () => {
-//     const cards = wrapper.find('.district-card')
-//     expect(cards.length).toEqual(181)
-//
-//   });
-//
-//   it('By default, comparison states should be empty', () => {
-//     const expectedStateCompare = []
-//     const expectedStateAverage = {}
-//     expect(wrapper.state().comparisonData).toEqual(expectedStateAverage)
-//     expect(wrapper.state().comparisonDistricts).toEqual(expectedStateCompare)
-//
-//   });
-//
-//   it('clicking on a card should cause it to render again at the top of the page', () => {
-//     const compareCards = wrapper.find('.comparison')
-//     expect(compareCards.children('.district-card').length).toEqual(0)
-//   });
-//
-// })
+describe('APP COMPONENT TEST - ON LOAD', () => {
+  const wrapper = mount(<App/>)
+  it('districts section of state should be populated on page load', () => {
+    const stateKeys = Object.keys(wrapper.state().districts)
+    expect(stateKeys.length).toEqual(181)
+
+  });
+
+  it('Should display the full dataset on load', () => {
+    const cards = wrapper.find('.district-card')
+    expect(cards.length).toEqual(181)
+
+  });
+
+  it('By default, comparison states should be empty', () => {
+    const expectedStateCompare = []
+    const expectedStateAverage = {}
+    expect(wrapper.state().comparisonData).toEqual(expectedStateAverage)
+    expect(wrapper.state().comparisonDistricts).toEqual(expectedStateCompare)
+
+  });
+
+  it('clicking on a card should cause it to render again at the top of the page', () => {
+    const compareCards = wrapper.find('.comparison')
+    expect(compareCards.children('.district-card').length).toEqual(0)
+  });
+
+})
 
 describe('APP COMPONENT TEST - ON CLICK OF CARD', () => {
   const wrapper = mount(<App/>)
@@ -101,11 +101,11 @@ describe('APP COMPONENT TEST - ON CLICK OF CARD', () => {
   it('selected cards should have the class of "active" ', () => {
     const selectedCard = wrapper.find('.active')
     expect(selectedCard.length).toEqual(4)
-
   });
 })
 
 describe('APP COMPONENT TEST - ON SEARCH', () => {
+
   const wrapper = mount(<App/>)
   it('Searching for a district should update state', () => {
     const searchBar = wrapper.find('input')

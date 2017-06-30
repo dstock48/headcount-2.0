@@ -2,10 +2,6 @@
 
 body {
   margin: 0;
-  background-color: #c2f7d1;
-}
-
-.district-card.active {
-  box-shadow: 0px 0px 20px hsla(0,0%,0%,.8);
-  background-color: hsl(64,100%,82%);
+  background: #2573d2;
+  box-sizing: border-box;
 }

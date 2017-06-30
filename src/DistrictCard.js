@@ -12,7 +12,7 @@ class DistrictCard extends Component {
       } else {
         accentClass = 'low'
       }
-      return <p className="district-data" key={distData.location + year}> <span className="year">{year}:</span> <span className={accentClass}>{distData.data[year]}</span></p>
+      return <p className="district-data" key={distData.location + year}> <span className="year">{year} :  </span> <span className={accentClass}>{distData.data[year]}</span></p>
     })
   }
 
