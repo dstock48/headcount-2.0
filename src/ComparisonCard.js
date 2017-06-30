@@ -7,12 +7,12 @@ const ComparisonCard = ({ comparisonData }) => {
   return (
     <div className="comparison-card" >
       <div>
-        <h1>◀︎ {titles[1]}</h1>
+        <h1 id="location-1">◀︎ {titles[1]}</h1>
         <h2>AVG: {comparisonData[titles[1]]}</h2>
       </div>
-      <p>Compared: {comparisonData.compared}</p>
+      <p id="compared">Compared: {comparisonData.compared}</p>
       <div>
-        <h1>{titles[0]} ▶︎</h1>
+        <h1 id="location-2">{titles[0]} ▶︎</h1>
         <h2>AVG: {comparisonData[titles[0]]}</h2>
       </div>
     </div>
