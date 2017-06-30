@@ -3,16 +3,11 @@ import {func} from 'prop-types'
 require('./Controls.css')
 
 class Controls extends Component {
-  constructor() {
-    super()
-    this.state = {
-
-    }
-  }
 
   render() {
     return (
       <div className="controls">
+        <h1 className="logo">HeadCount 2.0</h1>
         <input
           onChange={this.props.handleSearch}
           type="search"

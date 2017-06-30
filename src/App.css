@@ -1,5 +1,11 @@
 /*APP COMPONENT RELATED CSS GOES HERE*/
 
+body {
+  margin: 0;
+  background-color: #c2f7d1;
+}
+
 .district-card.active {
-  border-color: blue;
+  box-shadow: 0px 0px 20px hsla(0,0%,0%,.8);
+  background-color: hsl(64,100%,82%);
 }

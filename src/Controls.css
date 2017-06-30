@@ -1,13 +1,22 @@
 .controls {
-  background-color: hsl(0,0%,32%);
-  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .controls input {
-  height: 30px;
+  height: 40px;
   width: 300px;
-  font-size: 16px;
+  padding: 8px;
+  font-size: 18px;
+  text-align: center;
+  border: 2px solid hsla(0,0%,0%,.4);
+}
+
+.controls .logo {
+  margin: 0 0 30px;
+  font-size: 70px;
+  color: #18bd53;
 }

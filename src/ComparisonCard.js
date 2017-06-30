@@ -1,13 +1,20 @@
 import React from 'react';
 import {object} from 'prop-types'
+require('./ComparisonCard.css')
 
 const ComparisonCard = ({ comparisonData }) => {
   const titles = Object.keys(comparisonData)
   return (
-    <div className="district-card" >
-      <h1>{titles[0]} VS. {titles[1]}</h1>
+    <div className="comparison-card" >
+      <div>
+        <h1>◀︎ {titles[1]}</h1>
+        <h2>AVG: {comparisonData[titles[1]]}</h2>
+      </div>
       <p>Compared: {comparisonData.compared}</p>
-
+      <div>
+        <h1>{titles[0]} ▶︎</h1>
+        <h2>AVG: {comparisonData[titles[0]]}</h2>
+      </div>
     </div>
   )
 }
